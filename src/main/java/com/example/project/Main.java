@@ -11,33 +11,49 @@ import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
-//        Skill skill = null;
-//        SkillRepository skillRepository = new SkillRepositoryImpl();
-//        skillRepository.save(skill);
-
         CommonView commonView = new CommonView();
         commonView.run();
-
-//        Set<Skill> skills = new HashSet<>();
-//        skills.add(null);
-//        Developer developer = new Developer("test",skills);
-//
-//        if (developer.getSkills().stream().findFirst().isPresent()){
-//            System.out.println("1");
-//        }else System.out.println("0");
-
     }
-//пофиксить метод update для аккаунта, заменить логику удаления/сохранение на обновление существующего - 20%
+
 //пофиксить метод update для девелопера, заменить логику удаления/сохранение на обновление существующего - ?
-//доделать девелопер вьюху метод апдейт - 30%
-//пофиксить статус аккаунт метод, который при неправильном выборе кидает ошибку - 85%
-    //developer:
-    // getLastAddedDeveloper - ok
-    // delete - ok
-    // getById - ok
-    // getAll - ok
-    // extract - ok
-    // save - ok
-    // update - ?
+//доделать девелопер вьюху метод апдейт - 60%
 
 }
+
+/*
+ACCOUNT MENU - ?
+    FIND ALL - OK
+    GET BY ID - OK
+    CREATE - 85% (check for duplicate entry for creating account after successful delete - 0%)
+    DELETE - OK
+    UPDATE -
+        CHANGE USER ID - OK
+        CHANGE USERNAME - OK
+        CHANGE STATUS - 70% OK BUT(пофиксить статус аккаунт метод, который при неправильном выборе кидает ошибку - 85%)
+
+ */
+
+/*
+DEVELOPER MENU - ?
+    GET ALL - OK
+    GET BY ID - OK
+    CREATE - OK
+    DELETE - NOT OK(FOREIGN KEY FROM ACCOUNTS FORBID DELETE FROM DEVELOPERS)
+    UPDATE -
+        NAME - OK
+        USERNAME - OK
+        ACCOUNT STATUS -
+        ADD SKILL -
+        DELETE SKILL -
+
+ */
+
+
+/*
+SKILL MENU - 100%
+    FIND ALL - OK
+    GET BY ID - OK
+    CREATE - OK
+    DELETE - OK
+    UPDATE - OK
+ */

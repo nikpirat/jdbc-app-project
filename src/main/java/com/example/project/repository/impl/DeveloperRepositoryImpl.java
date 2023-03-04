@@ -33,7 +33,7 @@ public class DeveloperRepositoryImpl implements DeveloperRepository {
     public Developer getById(Long id) {
         Developer developer = null;
         try (Connection connection = ConnectionPool.getConnection();
-             PreparedStatement ps = connection.prepareStatement(Constants.SQL_GET_DEVELOPER_BY_ID)) {
+             PreparedStatement ps = connection.prepareStatement(Constants.SQL_GET_DEVELOPER_BY_ID, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)) {
             ps.setLong(1, id);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) developer = extractDeveloper(rs);
@@ -82,10 +82,6 @@ public class DeveloperRepositoryImpl implements DeveloperRepository {
         }
         return developer;
     }
-//ps.setLong(1, account.getDeveloper_id());
-//            ps.setString(2, account.getUsername());
-//            ps.setString(3, account.getAccountStatus().toString());
-//            ps.setLong(4, account.getId());
 
     @Override
     public Developer update(Developer developer) {
@@ -135,12 +131,12 @@ public class DeveloperRepositoryImpl implements DeveloperRepository {
                 ps.executeUpdate();
             }
 
-            try (PreparedStatement ps = connection.prepareStatement(Constants.SQL_DELETE_DEVELOPER)) {
+            try (PreparedStatement ps = connection.prepareStatement(Constants.SQL_DELETE_ACCOUNT_BY_DEV_ID)) {
                 ps.setLong(1, id);
                 ps.executeUpdate();
             }
 
-            try (PreparedStatement ps = connection.prepareStatement(Constants.SQL_DELETE_ACCOUNT_BY_DEV_ID)) {
+            try (PreparedStatement ps = connection.prepareStatement(Constants.SQL_DELETE_DEVELOPER)) {
                 ps.setLong(1, id);
                 ps.executeUpdate();
             }

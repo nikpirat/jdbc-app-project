@@ -31,6 +31,7 @@ public class DeveloperView {
     private static final String text3 = "Choose developer's skills: To exit menu - Enter 0";
     private static final String developerNotFound = "Developer with such ID not found in database.\n";
     private static final String skillNotFound = "Skill with such ID not found in database.\n";
+    private static final String skillAlreadyInSet = "Skill with such ID has already been added. Please choose another one.\n";
     private static final String error = "Please, enter valid number\n";
 
 
@@ -41,15 +42,15 @@ public class DeveloperView {
         do {
             System.out.println(start);
             switch (choice = in.nextInt()) {
-                case 1:
+                case 1: /** GETTING DEVELOPER BY ID **/
                     System.out.println(text1);
                     Developer developer = developerController.getDeveloperByID(in.nextLong());
                     System.out.println((developer == null ? developerNotFound : developer) + "\n");
                     break;
-                case 2:
+                case 2: /** GETTING ALL DEVELOPERS **/
                     System.out.println(developerController.getAllDevelopers());
                     break;
-                case 3:
+                case 3: /** DELETING DEVELOPER **/
                     System.out.println(text1);
                     try {
                         developerController.deleteDeveloperByID(in.nextLong());
@@ -58,7 +59,7 @@ public class DeveloperView {
                         e.printStackTrace();
                     }
                     break;
-                case 4:
+                case 4: /** CREATING NEW DEVELOPER **/
                     System.out.println(createName);
                     String name = in.next();
                     System.out.println(text3);
@@ -69,7 +70,12 @@ public class DeveloperView {
                         skillChoice = in.nextLong();
                         if (skillChoice != 0) {
                             Skill skill = skillController.getSkillByID(skillChoice);
-                            if (skill != null) skills.add(skill);
+                            if (skill != null) {
+                                if (skills.contains(skill)) {
+                                    System.out.println(skillAlreadyInSet);
+                                }
+                                else skills.add(skill);
+                            }
                             else System.out.println(skillNotFound);
                         }
                     } while (skillChoice != 0);
@@ -80,7 +86,7 @@ public class DeveloperView {
                         throw new RuntimeException(e);
                     }
                     break;
-                case 5:
+                case 5: /** UPDATING DEVELOPER **/
                     System.out.println(text1);
                     long developerId = in.nextLong();
                     Developer developerToUpdate = developerController.getDeveloperByID(developerId);
@@ -93,20 +99,20 @@ public class DeveloperView {
                     do {
                         System.out.println(startUpdate);
                         switch (updateChoice = in.nextInt()) {
-                            case 1:
+                            case 1: /** UPDATING DEVELOPERS NAME **/
                                 System.out.println(updateName);
                                 developerToUpdate.setName(in.next());
-                            case 2:
+                                break;
+                            case 2: /** UPDATING DEVELOPERS ACCOUNT USERNAME **/
                                 System.out.println(updateAccountName);
-                                Account accountToUpdate = accountController.getAccountByID(developerToUpdate.getAccount().getId());
-                                accountToUpdate.setUsername(in.next());
-
                                 developerToUpdate.getAccount().setUsername(in.next());
-                            case 3:
+                                break;
+                            case 3: /** UPDATING DEVELOPERS ACCOUNT STATUS **/
                                 System.out.println();
                                 developerToUpdate.getAccount().setAccountStatus(AccountView.chooseAccountStatus(in.nextInt()));
 //                                accountToUpdate.setAccountStatus(AccountView.chooseAccountStatus(in.nextInt()));
-                            case 4:
+                                break;
+                            case 4: /** ADDING NEW SKILL TO DEVELOPER **/
                                 System.out.println("Enter skill ID to add:\n" + skillController.getAllSkills());
                                 Skill skillToAdd = skillController.getSkillByID(in.nextLong());
                                 if (skillToAdd == null) {
@@ -119,11 +125,11 @@ public class DeveloperView {
                                 }
                                 developerToUpdate.getSkills().add(skillToAdd);
                                 break;
-                            case 5:
+                            case 5: /** DELETING SKILL FROM DEVELOPER **/
                                 System.out.println("Enter skill ID to delete:\n" + developerToUpdate.getSkills());
                                 developerToUpdate.getSkills().removeIf(skill -> skill.getId() == in.nextLong());
                                 break;
-                            case 6:
+                            case 6: /** UPDATE DEVELOPER AFTER ALL CHANGES **/
                                 developerController.updateDeveloper(developerToUpdate);
                                 break;
                             default:
