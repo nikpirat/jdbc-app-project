@@ -37,7 +37,7 @@ public class AccountView {
                 status = AccountStatus.DELETED;
                 break;
             default:
-                System.out.println(error);
+//                System.out.println(error);
                 break;
         }
         return status;
@@ -50,15 +50,15 @@ public class AccountView {
         do {
             System.out.println(start);
             switch (choice = in.nextInt()) {
-                case 1:
+                case 1: /** GETTING ACCOUNT BY ID **/
                     System.out.println(text1);
                     Account account = accountController.getAccountByID(in.nextLong());
                     System.out.println((account == null ? accountNotFound : account) + "\n");
                     break;
-                case 2:
+                case 2: /** GETTING ALL ACCOUNTS **/
                     System.out.println(accountController.getAllAccounts() + "\n");
                     break;
-                case 3:
+                case 3: /** DELETING ACCOUNT **/
                     System.out.println(text1);
                     try {
                         accountController.deleteAccountByID(in.nextLong());
@@ -67,17 +67,21 @@ public class AccountView {
                         System.out.println(accountNotFound);
                     }
                     break;
-                case 4:
+                case 4: /** CREATING NEW ACCOUNT **/
                     System.out.println(text2);
                     long userId = in.nextLong();
                     System.out.println(text3);
                     String username = in.next();
                     System.out.println(text4);
-                    AccountStatus status = chooseAccountStatus(in.nextInt());
+                    AccountStatus status;
+                    do {
+                        status = chooseAccountStatus(in.nextInt());
+                        if (status==null) System.out.println("Please enter valid number");
+                    } while (status==null);
 
                     accountController.saveAccount(new Account(userId, username, status));
                     break;
-                case 5:
+                case 5: /** UPDATING ACCOUNT **/
                     System.out.println(text1);
                     Account accountToUpdate = accountController.getAccountByID(in.nextLong());
                     if (accountToUpdate == null) {
@@ -88,33 +92,26 @@ public class AccountView {
                     do {
                         System.out.println(startUpdate);
                         switch (updateChoice = in.nextInt()) {
-                            case 1:
+                            case 1: /** UPDATING ACCOUNT USER ID **/
                                 System.out.println(update_userID);
                                 accountToUpdate.setDeveloper_id(in.nextLong());
                                 accountController.updateAccount(accountToUpdate);
                                 break;
-                            case 2:
+                            case 2: /** UPDATING ACCOUNT USERNAME **/
                                 System.out.println(update_username);
                                 accountToUpdate.setUsername(in.next());
                                 accountController.updateAccount(accountToUpdate);
                                 break;
-                            case 3:
-//                                System.out.println(update_accountStatus);
-//                                AccountStatus updateStatus = chooseAccountStatus(in.nextInt());
-//                                if (updateStatus==null) {
-//                                    System.out.println(error);
-//                                    break;
-//                                }
-//                                accountToUpdate.setAccountStatus(updateStatus);
-//                                accountController.updateAccount(accountToUpdate);
-
+                            case 3: /** UPDATING ACCOUNT STATUS **/
                                 AccountStatus updateStatus;
                                 do {
                                     System.out.println(update_accountStatus);
                                     updateStatus = chooseAccountStatus(in.nextInt());
-                                    accountToUpdate.setAccountStatus(updateStatus);
-                                    accountController.updateAccount(accountToUpdate);
-                                }while (updateStatus==null);
+                                    if (updateStatus==null) System.out.println(error);
+                                } while (updateStatus==null);
+
+                                accountToUpdate.setAccountStatus(updateStatus);
+                                accountController.updateAccount(accountToUpdate);
                                 break;
                             case 4:
                                 break;

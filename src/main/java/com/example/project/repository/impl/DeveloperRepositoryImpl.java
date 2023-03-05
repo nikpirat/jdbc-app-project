@@ -56,7 +56,6 @@ public class DeveloperRepositoryImpl implements DeveloperRepository {
         }
         return developer_id;
     }
-
     @Override
     public Developer save(Developer developer) {
         try (Connection connection = ConnectionPool.getConnection()) {
@@ -82,7 +81,6 @@ public class DeveloperRepositoryImpl implements DeveloperRepository {
         }
         return developer;
     }
-
     @Override
     public Developer update(Developer developer) {
         try(Connection connection = ConnectionPool.getConnection()){
@@ -122,7 +120,6 @@ public class DeveloperRepositoryImpl implements DeveloperRepository {
         }
         return developer;
     }
-
     @Override
     public void deleteById(Long id) {
         try (Connection connection = ConnectionPool.getConnection()) {

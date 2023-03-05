@@ -4,6 +4,7 @@ import com.example.project.controller.AccountController;
 import com.example.project.controller.DeveloperController;
 import com.example.project.controller.SkillController;
 import com.example.project.model.Account;
+import com.example.project.model.AccountStatus;
 import com.example.project.model.Developer;
 import com.example.project.model.Skill;
 
@@ -28,6 +29,7 @@ public class DeveloperView {
     private static final String createName = "Enter developer's name: ";
     private static final String updateName = "Enter new developer's name: ";
     private static final String updateAccountName = "Enter new developer's account username: ";
+    private static final String update_accountStatus = "Enter new account status:\n1) Active\n2) Banned\n3) Deleted";
     private static final String text3 = "Choose developer's skills: To exit menu - Enter 0";
     private static final String developerNotFound = "Developer with such ID not found in database.\n";
     private static final String skillNotFound = "Skill with such ID not found in database.\n";
@@ -108,9 +110,15 @@ public class DeveloperView {
                                 developerToUpdate.getAccount().setUsername(in.next());
                                 break;
                             case 3: /** UPDATING DEVELOPERS ACCOUNT STATUS **/
-                                System.out.println();
-                                developerToUpdate.getAccount().setAccountStatus(AccountView.chooseAccountStatus(in.nextInt()));
-//                                accountToUpdate.setAccountStatus(AccountView.chooseAccountStatus(in.nextInt()));
+                                AccountStatus updateStatus;
+
+                                do {
+                                    System.out.println(update_accountStatus);
+                                    updateStatus = AccountView.chooseAccountStatus(in.nextInt());
+                                    if (updateStatus==null) System.out.println(error);
+                                } while (updateStatus==null);
+
+                                developerToUpdate.getAccount().setAccountStatus(updateStatus);
                                 break;
                             case 4: /** ADDING NEW SKILL TO DEVELOPER **/
                                 System.out.println("Enter skill ID to add:\n" + skillController.getAllSkills());
@@ -127,7 +135,8 @@ public class DeveloperView {
                                 break;
                             case 5: /** DELETING SKILL FROM DEVELOPER **/
                                 System.out.println("Enter skill ID to delete:\n" + developerToUpdate.getSkills());
-                                developerToUpdate.getSkills().removeIf(skill -> skill.getId() == in.nextLong());
+                                long id = in.nextLong();
+                                developerToUpdate.getSkills().removeIf(skill -> skill.getId() == id);
                                 break;
                             case 6: /** UPDATE DEVELOPER AFTER ALL CHANGES **/
                                 developerController.updateDeveloper(developerToUpdate);

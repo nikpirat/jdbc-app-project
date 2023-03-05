@@ -1,55 +1,42 @@
 package com.example.project;
 
-import com.example.project.model.Developer;
-import com.example.project.model.Skill;
-import com.example.project.repository.SkillRepository;
-import com.example.project.repository.impl.SkillRepositoryImpl;
 import com.example.project.view.CommonView;
-
-import java.util.HashSet;
-import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
         CommonView commonView = new CommonView();
         commonView.run();
     }
-
-//пофиксить метод update для девелопера, заменить логику удаления/сохранение на обновление существующего - ?
-//доделать девелопер вьюху метод апдейт - 60%
-
 }
 
-/*
-ACCOUNT MENU - ?
+/**
+ACCOUNT MENU - 90%
     FIND ALL - OK
     GET BY ID - OK
-    CREATE - 85% (check for duplicate entry for creating account after successful delete - 0%)
+    CREATE -    85% НА ОДНОГО ЮЗЕРА ТОЛЬКО 1 АККАУНТ(ПОСЛЕ УДАЛЕНИЯ АККАУНТ ОСТАЕТСЯ И НОВЫЙ СОЗДАТЬ НЕ ПОЛУЧИТСЯ НА ТОГО ЖЕ ЮЗЕРА)
+                ВЫБИВАЕТ ERROR DUPLICATE ENTRY
     DELETE - OK
-    UPDATE -
+    UPDATE - OK
         CHANGE USER ID - OK
         CHANGE USERNAME - OK
-        CHANGE STATUS - 70% OK BUT(пофиксить статус аккаунт метод, который при неправильном выборе кидает ошибку - 85%)
+        CHANGE STATUS - OK
 
  */
-
-/*
-DEVELOPER MENU - ?
+/**
+DEVELOPER MENU - 90%
     GET ALL - OK
     GET BY ID - OK
     CREATE - OK
     DELETE - NOT OK(FOREIGN KEY FROM ACCOUNTS FORBID DELETE FROM DEVELOPERS)
-    UPDATE -
+    UPDATE - OK
         NAME - OK
         USERNAME - OK
-        ACCOUNT STATUS -
-        ADD SKILL -
-        DELETE SKILL -
+        ACCOUNT STATUS - OK
+        ADD SKILL - OK
+        DELETE SKILL - OK
 
  */
-
-
-/*
+/**
 SKILL MENU - 100%
     FIND ALL - OK
     GET BY ID - OK
