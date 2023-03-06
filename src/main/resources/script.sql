@@ -18,7 +18,7 @@ create table if not exists `accounts`
     `username`       varchar(40)   not null,
     `account_status` enum ('ACTIVE','BANNED','DELETED') DEFAULT 'ACTIVE',
 
-    foreign key (`developer_id`) references `developers` (`developer_id`)
+    foreign key (`developer_id`) references `developers` (`developer_id`) on delete cascade
 );
 
 create table if not exists `developer_skills`
