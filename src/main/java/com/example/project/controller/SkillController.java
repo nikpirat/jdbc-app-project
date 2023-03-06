@@ -1,26 +1,26 @@
 package com.example.project.controller;
 
 import com.example.project.model.Skill;
-import com.example.project.repository.SkillRepository;
 import com.example.project.repository.impl.SkillRepositoryImpl;
+import com.example.project.service.SkillService;
 
 import java.util.List;
 
 public class SkillController {
-    private final SkillRepository skillRepositoryImpl = new SkillRepositoryImpl();
+    private final SkillService skillService = new SkillService();
     public List<Skill> getAllSkills(){
-        return skillRepositoryImpl.getAll();
+        return skillService.getAllSkills();
     }
     public Skill getSkillByID(long id){
-        return skillRepositoryImpl.getById(id);
+        return skillService.getSkillByID(id);
     }
     public Skill saveSkill(Skill skill){
-        return skillRepositoryImpl.save(skill);
+        return skillService.saveSkill(skill);
     }
     public void deleteSkillByID(Long id){
-        skillRepositoryImpl.deleteById(id);
+        skillService.deleteSkillByID(id);
     }
     public Skill updateSkill(Skill skill){
-        return skillRepositoryImpl.update(skill);
+        return skillService.updateSkill(skill);
     }
 }

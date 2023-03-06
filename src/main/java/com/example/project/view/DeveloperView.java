@@ -21,10 +21,8 @@ public class DeveloperView {
             "Press 1 to find developer\nPress 2 to get all developers\nPress 3 to delete developer\n" +
                     "Press 4 to create developer\nPress 5 to update developer\nPress 6 to return to main menu";
     private static final String startUpdate =
-            "Select item: \n1) Change developer's name\nP2) Change developer's account username\n" +
+            "Select item: \n1) Change developer's name\n2) Change developer's account username\n" +
                     "3) Change developer's account status\n4) Add new skill\n5) Delete skill\n6) To confirm updates and return to main menu";
-
-    private static final String end = "Successfully";
     private static final String text1 = "Enter developer's ID: ";
     private static final String createName = "Enter developer's name: ";
     private static final String updateName = "Enter new developer's name: ";

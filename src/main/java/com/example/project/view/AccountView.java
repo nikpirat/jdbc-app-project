@@ -1,6 +1,7 @@
 package com.example.project.view;
 
 import com.example.project.controller.AccountController;
+import com.example.project.controller.DeveloperController;
 import com.example.project.model.Account;
 import com.example.project.model.AccountStatus;
 
@@ -8,6 +9,8 @@ import java.util.Scanner;
 
 public class AccountView {
     private final AccountController accountController = new AccountController();
+    private final DeveloperController developerController = new DeveloperController();
+
     private static final String start = "Press 1 to find account\nPress 2 to get all accounts\nPress 3 to delete account\n" +
             "Press 4 to create account\nPress 5 to update account\nPress 6 to return to main menu";
     private static final String startUpdate = "Select item:\n1) Change user's ID\n2) Change username\n3) Change account status\n4)Return to account menu";
@@ -37,7 +40,6 @@ public class AccountView {
                 status = AccountStatus.DELETED;
                 break;
             default:
-//                System.out.println(error);
                 break;
         }
         return status;
@@ -70,6 +72,10 @@ public class AccountView {
                 case 4: /** CREATING NEW ACCOUNT **/
                     System.out.println(text2);
                     long userId = in.nextLong();
+                    if (developerController.getDeveloperByID(userId)!=null){
+                        System.out.println("This ID is already in use");
+                        break;
+                    }
                     System.out.println(text3);
                     String username = in.next();
                     System.out.println(text4);

@@ -1,29 +1,27 @@
-package com.example.project.controller;
+package com.example.project.service;
 
 import com.example.project.model.Account;
 import com.example.project.repository.AccountRepository;
 import com.example.project.repository.impl.AccountRepositoryImpl;
-import com.example.project.service.AccountService;
 
 import java.util.List;
 
-public class AccountController {
-    private final AccountService accountService = new AccountService();
+public class AccountService {
+    private final AccountRepository accountRepositoryImpl = new AccountRepositoryImpl();
 
     public List<Account> getAllAccounts() {
-        return accountService.getAllAccounts();
+        return accountRepositoryImpl.getAll();
     }
     public Account getAccountByID(Long id){
-        return accountService.getAccountByID(id);
+        return accountRepositoryImpl.getById(id);
     }
     public Account saveAccount(Account account) {
-        return accountService.saveAccount(account);
+        return accountRepositoryImpl.save(account);
     }
     public void deleteAccountByID(Long id) {
-        accountService.deleteAccountByID(id);
+        accountRepositoryImpl.deleteById(id);
     }
     public Account updateAccount(Account account) {
-        return accountService.updateAccount(account);
+        return accountRepositoryImpl.update(account);
     }
-
 }
