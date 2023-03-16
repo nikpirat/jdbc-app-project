@@ -7,7 +7,15 @@ import com.example.project.repository.impl.DeveloperRepositoryImpl;
 import java.util.List;
 
 public class DeveloperService {
-    private final DeveloperRepository developerRepositoryImpl = new DeveloperRepositoryImpl();
+    private final DeveloperRepository developerRepositoryImpl;
+
+    public DeveloperService() {
+        developerRepositoryImpl = new DeveloperRepositoryImpl();
+    }
+
+    public DeveloperService(DeveloperRepository developerRepositoryImpl) {
+        this.developerRepositoryImpl = developerRepositoryImpl;
+    }
 
     public List<Developer> getAllDevelopers() {
         return developerRepositoryImpl.getAll();

@@ -65,7 +65,7 @@ public class DeveloperRepositoryImpl implements DeveloperRepository {
                 ps.executeUpdate();
             }
             if (developer.getSkills().stream().findFirst().isPresent()){
-
+                //todo
             }
             try (PreparedStatement ps = connection.prepareStatement(Constants.SQL_CREATE_DEVELOPER_SKILLS)) {
                 for (Skill skill : developer.getSkills()) {

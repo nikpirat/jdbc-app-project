@@ -7,7 +7,15 @@ import com.example.project.repository.impl.AccountRepositoryImpl;
 import java.util.List;
 
 public class AccountService {
-    private final AccountRepository accountRepositoryImpl = new AccountRepositoryImpl();
+    private final AccountRepository accountRepositoryImpl;
+
+    public AccountService() {
+        accountRepositoryImpl = new AccountRepositoryImpl();
+    }
+
+    public AccountService(AccountRepository accountRepositoryImpl) {
+        this.accountRepositoryImpl = accountRepositoryImpl;
+    }
 
     public List<Account> getAllAccounts() {
         return accountRepositoryImpl.getAll();

@@ -10,7 +10,7 @@ public class Main {
 }
 
 /**
-ACCOUNT MENU - 90%
+ACCOUNT MENU - 100%
     FIND ALL - OK
     GET BY ID - OK
     CREATE -    85% НА ОДНОГО ЮЗЕРА ТОЛЬКО 1 АККАУНТ(ПОСЛЕ УДАЛЕНИЯ АККАУНТ ОСТАЕТСЯ И НОВЫЙ СОЗДАТЬ НЕ ПОЛУЧИТСЯ НА ТОГО ЖЕ ЮЗЕРА)
@@ -23,10 +23,10 @@ ACCOUNT MENU - 90%
 
  */
 /**
-DEVELOPER MENU - 90%
+DEVELOPER MENU - 100%
     GET ALL - OK
     GET BY ID - OK
-    CREATE - OK
+    CREATE - OK CHECK DUPLICATE ENTRY FOR CREATING
     DELETE - OK
     UPDATE - OK
         NAME - OK

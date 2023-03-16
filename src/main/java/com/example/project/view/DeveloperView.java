@@ -80,8 +80,9 @@ public class DeveloperView {
                         }
                     } while (skillChoice != 0);
                     try {
-                        developerController.saveDeveloper(new Developer(name, skills));
+                        developerController.saveDeveloper(new Developer(name, skills));//auto generating developer ID in DB
                         accountController.saveAccount(new Account(developerController.getLastAddedDeveloper(), name));
+                        //creating account, providing with the last created dev ID
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
