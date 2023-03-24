@@ -1,0 +1,19 @@
+databaseChangelog:
+  - changeSet:
+    id: create-skill-table
+    author: nick
+    changes:
+      - createTable:
+        tableName: skills
+          columns:
+
+            - column:
+                name: skill_Id
+                type: long
+                autoIncrement: true
+                constraints:
+                  primaryKey: true
+                  nullable: false
+            - column:
+                name: name
+                type: varchar(40)

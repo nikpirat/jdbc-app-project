@@ -1,0 +1,19 @@
+databaseChangelog:
+  - changeSet:
+    id: create-developer-table
+    author: nick
+    changes:
+      - createTable:
+        tableName: developers
+          columns:
+
+            - column:
+                name: developer_Id
+                type: long
+                autoIncrement: true
+                constraints:
+                  primaryKey: true
+                  nullable: false
+            - column:
+                name: name
+                type: varchar(64)
