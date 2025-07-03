@@ -1,28 +1,18 @@
 # jdbc-app
-Необходимо реализовать консольное CRUD приложение, которое взаимодействует с БД и позволяет выполнять все CRUD операции над сущностями:
+You need to implement a console CRUD application that interacts with the database and allows you to perform all CRUD operations on entities:
 
-Developer
+- Developer
+- Skill
+- Account
+- AccountStatus (enum ACTIVE, BANNED, DELETED)
+- Developer -> Set skills + Account account
+- Account -> AccountStatus
 
-Skill
+Requirements:
 
-Account
-
-AccountStatus (enum ACTIVE, BANNED, DELETED)
-
-Developer -> Set<Skill> skills + Account account
-
-Account -> AccountStatus
-
-Требования:
-
-Придерживаться шаблона MVC (пакеты model, repository, service, controller, view)
-
-Для миграции БД использовать https://www.liquibase.org/
-
-Сервисный слой приложения должен быть покрыт юнит тестами (junit + mockito).
-
-Для импорта библиотек использовать Maven
-
-Результатом выполнения проекта должен быть отдельный репозиторий на github, с описанием задачи, проекта и инструкцией по локальному запуску проекта.
-
-Технологии: Java, MySQL, JDBC, Maven, Liquibase, JUnit, Mockito
+Adhere to the MVC pattern (model, repository, service, controller, view packages)
+Use https://www.liquibase.org/ for database migration
+The service layer of the application should be covered by unit tests (junit + mockito).
+To import libraries use Maven
+The result of the project should be a separate repository on github, with a description of the task, project and instructions on how to run the project locally.
+Technologies: Java, MySQL, JDBC, Maven, Liquibase, JUnit, Mockito.
